@@ -22,7 +22,7 @@ $(document).ready(function(){
     $('#matches').html('Matches: '+matches);
     $('#attempts').html('Chances: '+attempts);
     var ready = true; //game state
-      $('.card').each(function(i){
+      $('.card').each(function(i){  // jsm: I would save i for talking about loops and use card, number, or element here. Not incorrect though
           $(this).click(function(){
               if(ready === true){
                   var cName = 'c'+deck[i];
@@ -33,7 +33,7 @@ $(document).ready(function(){
               }
 
               if(pair.length === 2){
-                ready = false;
+                ready = false; // jsm: nice!
                   var x = pair[0];
                   var y = pair[1];
                   if(deck[x] !== deck[y]){
@@ -41,7 +41,7 @@ $(document).ready(function(){
                       setTimeout(function(){
                         $('.card').eq(x).attr('class', 'card');
                         $('.card').eq(y).attr('class', 'card');
-                        ready = true;
+                        ready = true; // jsm: great!
                       }, 1500);
                   }else{
                     //checks to make sure the same card hasn't been clicked twice
@@ -56,7 +56,7 @@ $(document).ready(function(){
                   winOrLose(attempts, matches);
                   $('#matches').html('Matches: '+matches);
                   $('#attempts').html('Chances: '+attempts);
-                  pair.length = 0;
+                  pair.length = 0; // jsm: is this wanting to empty the pair array
               }
 
           });
@@ -93,7 +93,7 @@ $(document).ready(function(){
     var makeDeck = function(numPairs){
       deck = [];
         for (var i=0; i<numPairs; i++){
-          var rndm = Math.floor(Math.random()*20);
+          var rndm = Math.floor(Math.random()*20); //jsm: since the deck is about to be shuffled is it necessary to have this random?
           if (deck.indexOf(rndm) == -1){
               deck.push(rndm);
               deck.push(rndm);
@@ -111,7 +111,7 @@ $(document).ready(function(){
     }
 
     //game process and levels
-    var gameStart = function (){
+    var gameStart = function (){ //jsm: This is the right way to attach listeners, all together in one method
     $('body').append('<h1 class="prompt">Choose a Level<h1>');
     $('#easy').click(function(e){
         e.preventDefault();
